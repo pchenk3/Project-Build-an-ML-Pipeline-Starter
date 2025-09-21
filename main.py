@@ -54,7 +54,7 @@ def go(config: DictConfig):
 
         if "basic_cleaning" in active_steps:
              _ = mlflow.run(
-                f"{config['main']['src_repository']}/basic_cleaning",
+                os.path.join(hydra.utils.get_original_cwd(), "src", "basic_cleaning"),
                 "main",
                 version='main',
                 env_manager="conda",
@@ -69,7 +69,7 @@ def go(config: DictConfig):
             )
         if "data_check" in active_steps:
              _ = mlflow.run(
-                f"{config['main']['src_repository']}/data_check",
+                os.path.join(hydra.utils.get_original_cwd(), "src", "data_check"),
                 "main",
                 version='main',
                 env_manager="conda",
