@@ -109,18 +109,16 @@ def go(config: DictConfig):
             # step
 
                 _ = mlflow.run(
-                f"{config['main']['src_repository']}/train_random_forest",
-                "main",
-                version='main',
-                env_manager="conda",
+                os.path.join(hydra.utils.get_original_cwd(), "src", "train_random_forest"),
+                entry_point="main",
                 parameters={
                     "trainval_artifact": "trainval_data.csv:latest",
                     "val_size": config["modeling"]["val_size"],
                     "random_seed": config["modeling"]["random_seed"],
                     "stratify_by": config["modeling"]["stratify_by"],
-                    "rf_config" : rf_config,
-                    "max_tfidf_features" : config["modeling"]["max_tfidf_features"],
-                    "output_artifact" : "random_forest_export"
+                    "rf_config": rf_config,
+                    "max_tfidf_features": config["modeling"]["max_tfidf_features"],
+                    "output_artifact": "random_forest_export",
                 },
             )
 
