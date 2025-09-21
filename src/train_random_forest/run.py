@@ -99,7 +99,6 @@ def go(args):
     mlflow.sklearn.save_model(
         sk_pipe,
         export_path,
-   
         input_example = X_train.iloc[:5]
     )
     ######################################
