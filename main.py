@@ -56,7 +56,6 @@ def go(config: DictConfig):
              _ = mlflow.run(
                 os.path.join(hydra.utils.get_original_cwd(), "src", "basic_cleaning"),
                 "main",
-                version='main',
                 env_manager="conda",
                 parameters={
                     "input_artifact": "sample.csv:latest",
@@ -71,7 +70,6 @@ def go(config: DictConfig):
              _ = mlflow.run(
                 os.path.join(hydra.utils.get_original_cwd(), "src", "data_check"),
                 "main",
-                version='main',
                 env_manager="conda",
                 parameters={
                     "csv": "clean_sample.csv:latest",
@@ -86,7 +84,6 @@ def go(config: DictConfig):
             _ = mlflow.run(
                 f"{config['main']['components_repository']}/train_val_test_split",
                 "main",
-                version='main',
                 env_manager="conda",
                 parameters={
                     "input": "clean_sample.csv:latest",
